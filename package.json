@@ -10,5 +10,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.4"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "oracle-nosqldb": "^5.5.1"
+  }
 }
