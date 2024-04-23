@@ -6,17 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "build": "babel src --out-dir dist"
+    "build": "swc src --out-dir dist"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/cli": "^7.24.1",
-    "@babel/core": "^7.24.4"
-  },
   "dependencies": {
     "express": "^4.19.2",
     "oracle-nosqldb": "^5.5.1"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.4.17"
   }
 }
