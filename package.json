@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/server.js",
-    "build": "swc src --out-dir dist"
+    "build": "npm install && swc src --out-dir dist"
   },
   "keywords": [],
   "author": "",
