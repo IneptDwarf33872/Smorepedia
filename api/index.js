@@ -116,5 +116,5 @@ app.get("/byprop", async (req, res) => {
   app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
   });
-
+console.log("Pleas elog to the console");
 module.exports = app;
