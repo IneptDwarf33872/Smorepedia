@@ -112,6 +112,9 @@ app.get("/byprop", async (req, res) => {
       res.status(500).json({ error: err });
     }
   });
-
+  const port = process.env.PORT || 3000; // Default port or environment variable
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
 
 module.exports = app;
