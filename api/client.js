@@ -14,7 +14,7 @@ const client = new NoSQLClient({
 "ocid1.user.oc1..aaaaaaaanamjf2u5sdw57hsuuvi4adbeotpigzolekzehywix3ilz6osb3yq",
       fingerprint: "9e:23:38:8a:5b:b6:c7:b5:16:b6:72:1a:a5:92:9f:75",
       passphrase: "",
-      privateKeyFile: "./.oci/privateKey.pem",
+      privateKeyFile: "../.oci/privateKey.pem",
     },
   },
 });
