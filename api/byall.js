@@ -8,7 +8,7 @@ export default async (req, res) =>{
     try {
       const result = await client.query('SELECT * FROM pages');
       console.log(result);
-      res.status(200).json(result.row);
+      res.status(200).json(result.rows);
     } catch (err) {
       res.status(500).json({ error: err });
       

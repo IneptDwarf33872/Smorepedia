@@ -10,7 +10,7 @@ export default async (req, res) => {
   
     try {
       const result = await client.get('pages', { id });
-      res.status(200).json(result.row);
+      res.status(200).json(result.rows);
     } catch (err) {
       res.status(500).json({ error: err });
     }
