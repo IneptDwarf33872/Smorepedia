@@ -1,6 +1,7 @@
 const { Region } = require("oracle-nosqldb");
 const { ServiceType } = require("oracle-nosqldb/lib/constants");
 const NoSQLClient = require("oracle-nosqldb").NoSQLClient;
+const path = require('path');
 const privateKeyPath = path.join(__dirname, '.oci', 'privateKey.pem');
 const client = new NoSQLClient({
   region: Region.US_ASHBURN_1,
