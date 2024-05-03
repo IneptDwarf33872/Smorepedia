@@ -21,7 +21,7 @@ export default async (req, res) => {
       return res.status(405).json({ error: 'Method not allowed' });
     }
   
-    const { id } = req.query; // Note the use of query parameters for GET requests
+    const { id } = req.params; // Note the use of query parameters for GET requests
   
     try {
       console.log(id);
