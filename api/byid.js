@@ -21,11 +21,11 @@ export default async (req, res) => {
       return res.status(405).json({ error: 'Method not allowed' });
     }
   
-    const { id } = req.data; // Note the use of query parameters for GET requests
+    const { prop } = req.query; // Note the use of query parameters for GET requests
   
-    console.log(id);
+    console.log(prop);
     try {
-      const result = await client.get('pages', { id });
+      const result = await client.get('pages', { id: prop });
       res.status(200).json(result.rows);
     } catch (err) {
       res.status(500).json({ error: err });
