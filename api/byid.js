@@ -24,6 +24,7 @@ export default async (req, res) => {
     const { id } = req.query; // Note the use of query parameters for GET requests
   
     try {
+      console.log(id);
       const result = await client.get('pages', { id });
       res.status(200).json(result.rows);
     } catch (err) {
