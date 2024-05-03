@@ -25,7 +25,6 @@ export default async (req, res) => {
     const primaryKey = {
       id: id,  // The ID you want to query by
     };
-    console.log(prop);
     try {
       const result = await client.get('pages',primaryKey);
       res.status(200).json(result.rows);
