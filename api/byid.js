@@ -21,7 +21,7 @@ export default async (req, res) => {
       return res.status(405).json({ error: 'Method not allowed' });
     }
   
-    const { id } = req.data; // Note the use of query parameters for GET requests
+    const { id } = req.query; // Note the use of query parameters for GET requests
     const primaryKey = {
       id: id,  // The ID you want to query by
     };
