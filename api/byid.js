@@ -27,7 +27,7 @@ export default async (req, res) => {
     };
     try {
       const result = await client.get('pages', primaryKey);
-      res.status(200).json(result);
+      res.status(200).json(result.row);
     } catch (err) {
       res.status(500).json({ error: err });
     }
