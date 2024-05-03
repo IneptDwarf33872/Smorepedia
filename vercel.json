@@ -1,8 +1,9 @@
 {
     "routes": [
-      { "src": "/api/byall", "dest": "/api/byall" },
-        { "src": "/api/add", "dest": "/api/add" },
-        { "src": "/api/byprop", "dest": "/api/byprop" },
-        { "src": "/api/maxid", "dest": "/api/maxid" }
+        { "src": "/api/add", "dest": "/api/add.js" },
+        { "src": "/api/maxid", "dest": "/api/maxid.js" },
+        { "src": "/api/byid", "dest": "/api/byid.js" },
+        { "src": "/api/delbyid", "dest": "/api/delbyid.js" },
+        { "src": "/api/byprop", "dest": "/api/byprop.js" }
     ]
   }
