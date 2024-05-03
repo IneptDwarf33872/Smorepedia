@@ -17,17 +17,18 @@ export default async (req, res) => {
     res.status(200).end();  // No further processing needed
     return;
   }
-    if (req.method !== 'GET') {
+    if (req.method !== 'DELETE') {
       return res.status(405).json({ error: 'Method not allowed' });
     }
   
     const { id } = req.query; // Note the use of query parameters for GET requests
   
     try {
-      const result = await client.get('pages', { id });
-      res.status(200).json(result.rows);
-    } catch (err) {
+      const result = await client.delete('pages', { id: id });
+      res.json({ result: result.success});
+  } catch (err) {
+      console.error('failed to delete data', err);
       res.status(500).json({ error: err });
-    }
+  }
   };
   
