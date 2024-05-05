@@ -25,9 +25,27 @@ export default async (req, res) => {
   
     try {
         console.log("Image: " + image);
-      const result = await client.put('Assets', req.body);
+        if(typeof image == "string"){
+            const binaryString = atob(image); // Decodes the Base64 string
+            const length = binaryString.length;
+            const arrayBuffer = new ArrayBuffer(length); // Creates an ArrayBuffer of the correct size
+            const uint8Array = new Uint8Array(arrayBuffer);
+          
+            // Fill the Uint8Array with bytes from the decoded binary string
+            for (let i = 0; i < length; i++) {
+              uint8Array[i] = binaryString.charCodeAt(i);
+            }
+            const result = await client.put('Assets', {
+                id,
+                title,
+                uint8Array,
+                pageTitle,
+                type,
+            });
+            res.status(200).json({ success: result.success });
+        }
   
-      res.status(200).json({ success: result.success });
+      
     } catch (err) {
       res.status(500).json({ error: err });
     }
