@@ -24,7 +24,7 @@ export default async (req, res) => {
     const { id, title, image, pageTitle, type } = req.body;
   
     try {
-        console.log("Image: " + image);
+        console.log("Image: " + image.type);
       const result = await client.put('Assets', {
         id,
         title,
