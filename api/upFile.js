@@ -14,6 +14,11 @@ function applyCorsHeaders(res) {
 
 module.exports = (req, res) => {
   applyCorsHeaders(res);
+
+  if (req.method === 'OPTIONS') {
+    res.status(204).end(); // No content, but with CORS headers
+    return;
+  }
   const busboy = new Busboy({ headers: req.headers });
 
   const fields = {};
