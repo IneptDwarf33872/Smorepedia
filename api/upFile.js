@@ -1,7 +1,19 @@
 const s3 = require("./awsClient");
 const Busboy = require("busboy");
 
+function applyCorsHeaders(res) {
+
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+}
+
 module.exports = (req, res) => {
+  applyCorsHeaders(res);
   const busboy = new Busboy({ headers: req.headers });
 
   const fields = {};
@@ -65,16 +77,7 @@ module.exports = (req, res) => {
 // // api/add.js
 // const client = require("./client");
 // const CHUNK_SIZE = 1024 * 1024;
-// function applyCorsHeaders(res) {
 
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-
-//   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-
-//   res.setHeader('Access-Control-Allow-Credentials', 'true');
-// }
 // export default async (req, res) => {
 //   applyCorsHeaders(res);
 //   if (req.method === 'OPTIONS') {
