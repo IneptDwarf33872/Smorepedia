@@ -4,28 +4,35 @@ const Busboy = require("busboy");
 module.exports = (req, res) => {
   const busboy = new Busboy({ headers: req.headers });
 
-  busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
-    console.log("File received:");
-    console.log("Field Name:", fieldname);
-    console.log("File Name:", filename);
-    console.log("Encoding:", encoding);
-    console.log("MIME Type:", mimetype);
+  const fields = {};
+  const files = [];
 
-    // Forward the file to S3
+  busboy.on("field", (fieldname, val) => {
+    fields[fieldname] = val; // Collect other form fields
+  });
+
+  busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
+    
     const s3Params = {
       Bucket: "smorepediafiles", // Your S3 bucket
-      Key: `${filename}`, // Path in S3
+      Key: `${fields[pageTitle]}/${fields[title]}`, // Path in S3
       Body: file, // File stream
       ContentType: mimetype, // MIME type from Busboy
     };
 
     s3.upload(s3Params, (err, data) => {
       if (err) {
-        console.error("Error uploading to S3:", err);
-        res.status(500).json({ error: "Error uploading to S3" });
+        res.status(500).json({ error: "Error uploading to S3", details: err });
       } else {
-        res.status(200).json({ message: "File uploaded to S3", data });
+        files.push({ filename, s3Location: data.Location }); // Track file upload results
       }
+    });
+  });
+  busboy.on("finish", () => {
+    res.status(200).json({
+      message: "Upload complete",
+      fields, // Include other form data in the response
+      files, // Include file upload results
     });
   });
 
