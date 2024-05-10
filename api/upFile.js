@@ -19,7 +19,7 @@ module.exports = (req, res) => {
     res.status(204).end(); // No content, but with CORS headers
     return;
   }
-  const BusBoyInstance = new Busboy({ headers: req.headers });
+  const BusBoyInstance = Busboy({ headers: req.headers });
 
   const fields = {};
   const files = [];
