@@ -1,5 +1,5 @@
 const s3 = require("./awsClient");
-const Busboy = require("busboy");
+const busboy = require("busboy");
 
 function applyCorsHeaders(res) {
 
@@ -19,16 +19,16 @@ module.exports = (req, res) => {
     res.status(204).end(); // No content, but with CORS headers
     return;
   }
-  const busboy = new Busboy({ headers: req.headers });
+  const Busboy = new busboy({ headers: req.headers });
 
   const fields = {};
   const files = [];
 
-  busboy.on("field", (fieldname, val) => {
+  Busboy.on("field", (fieldname, val) => {
     fields[fieldname] = val; // Collect other form fields
   });
 
-  busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
+  Busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
     
     const s3Params = {
       Bucket: "smorepediafiles", // Your S3 bucket
@@ -45,7 +45,7 @@ module.exports = (req, res) => {
       }
     });
   });
-  busboy.on("finish", () => {
+  Busboy.on("finish", () => {
     res.status(200).json({
       message: "Upload complete",
       fields, // Include other form data in the response
@@ -53,7 +53,7 @@ module.exports = (req, res) => {
     });
   });
 
-  req.pipe(busboy); // Pipe request data through Busboy to parse files
+  req.pipe(Busboy); // Pipe request data through Busboy to parse files
 };
 
 
