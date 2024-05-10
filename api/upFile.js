@@ -3,7 +3,7 @@ const busboy = require("busboy");
 
 function applyCorsHeaders(res) {
 
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  
 
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 
@@ -14,7 +14,7 @@ function applyCorsHeaders(res) {
 
 module.exports = (req, res) => {
   applyCorsHeaders(res);
-
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
   if (req.method === 'OPTIONS') {
     res.status(204).end(); // No content, but with CORS headers
     return;
