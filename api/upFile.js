@@ -32,7 +32,7 @@ module.exports = (req, res) => {
     
     const s3Params = {
       Bucket: "smorepediafiles", // Your S3 bucket
-      Key: `${fields[pageTitle]}/${fields[title]}`, // Path in S3
+      Key: `${fields.pageTitle}/${fields.title}`, // Path in S3
       Body: file, // File stream
       ContentType: mimetype, // MIME type from Busboy
     };
