@@ -1,5 +1,5 @@
 const s3 = require("./awsClient");
-const busboy = require("busboy");
+const Busboy = require("busboy");
 
 function applyCorsHeaders(res) {
 
@@ -19,7 +19,7 @@ module.exports = (req, res) => {
     res.status(204).end(); // No content, but with CORS headers
     return;
   }
-  const BusBoyInstance = new busboy({ headers: req.headers });
+  const BusBoyInstance = new Busboy({ headers: req.headers });
 
   const fields = {};
   const files = [];
