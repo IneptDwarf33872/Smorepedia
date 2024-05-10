@@ -19,16 +19,16 @@ module.exports = (req, res) => {
     res.status(204).end(); // No content, but with CORS headers
     return;
   }
-  const Busboy = new busboy({ headers: req.headers });
+  const BusBoyInstance = new busboy({ headers: req.headers });
 
   const fields = {};
   const files = [];
 
-  Busboy.on("field", (fieldname, val) => {
+  BusBoyInstance.on("field", (fieldname, val) => {
     fields[fieldname] = val; // Collect other form fields
   });
 
-  Busboy.on("file", (fieldname, file, filename, encoding, mimetype) => {
+  BusBoyInstance.on("file", (fieldname, file, filename, encoding, mimetype) => {
     
     const s3Params = {
       Bucket: "smorepediafiles", // Your S3 bucket
@@ -45,7 +45,7 @@ module.exports = (req, res) => {
       }
     });
   });
-  Busboy.on("finish", () => {
+  BusBoyInstance.on("finish", () => {
     res.status(200).json({
       message: "Upload complete",
       fields, // Include other form data in the response
@@ -53,7 +53,7 @@ module.exports = (req, res) => {
     });
   });
 
-  req.pipe(Busboy); // Pipe request data through Busboy to parse files
+  req.pipe(BusBoyInstance); // Pipe request data through Busboy to parse files
 };
 
 
